@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collection": "users",
+      "fields": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "connectionCode": { "type": "string" },
+        "createdAt": { "type": "string" }
+      }
+    },
+    "Medicine": {
+      "collection": "medicines",
+      "fields": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "dosage": { "type": "string" },
+        "time": { "type": "string" },
+        "frequency": { "type": "string" },
+        "foodInstruction": { "type": "string" },
+        "active": { "type": "boolean" },
+        "startDate": { "type": "string" }
+      }
+    },
+    "MedicineLog": {
+      "collection": "medicine_logs",
+      "fields": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "medicineId": { "type": "string" },
+        "scheduledTime": { "type": "string" },
+        "status": { "type": "string" },
+        "takenAt": { "type": "string" }
+      }
+    },
+    "CaregiverConnection": {
+      "collection": "caregiver_connections",
+      "fields": {
+        "id": { "type": "string" },
+        "patientId": { "type": "string" },
+        "caregiverId": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    }
+  }
+}

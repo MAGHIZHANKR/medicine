@@ -1,0 +1,36 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection: users can read/write their own profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      // Allow searching by connection code
+      allow read: if request.auth != null;
+    }
+    
+    // Medicines collection: user can manage their own medicines; approved caregiver can read
+    match /medicines/{medicineId} {
+      allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+      allow read, update, delete: if request.auth != null && (
+        resource.data.userId == request.auth.uid ||
+        request.auth.uid == resource.data.userId
+      );
+    }
+    
+    // Medicine Logs: user can read/write their logs; approved caregivers can read logs
+    match /medicine_logs/{logId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if request.auth != null;
+    }
+    
+    // Caregiver Connections: involved parties can read and update
+    match /caregiver_connections/{connectionId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if request.auth != null && (
+        resource.data.patientId == request.auth.uid ||
+        resource.data.caregiverId == request.auth.uid
+      );
+    }
+  }
+}

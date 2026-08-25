@@ -1,0 +1,6 @@
+{
+  "name": "MediMate AI",
+  "description": "Smart medicine reminder and self-reported medication tracking platform for elderly users and caregivers.",
+  "requestFramePermissions": ["notifications"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
